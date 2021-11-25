@@ -11,3 +11,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+}
+
+.form {
+  text-align: center;
+  margin: 1em;
+}
+
+.steps-list {
+  margin: auto;
+  text-align: center;
+  width: 60%;
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr;
+}
+
+.steps-item {
+
+}
+
+

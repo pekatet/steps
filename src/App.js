@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import './index.css'
+import React, { useState } from 'react'
+import AddForm from './AddForm'
+import StepsList from './StepsList'
+import StepsItemModel from './StepsItemModel'
 
 function App() {
+  const [steps, setSteps] = useState([])
+  const handleAdd = stepsNew => {
+    let stepsAdd = stepsNew;
+    if (steps.find(s => s.date === stepsNew.date))
+      stepsAdd = new StepsItemModel(stepsNew.date, parseInt(steps.find(s => s.date === stepsNew.date).distance) + parseInt(stepsNew.distance))
+    setSteps(prevSteps => [...prevSteps.filter(s => s.date !== stepsNew.date), stepsAdd]);
+  }
+  const handleRemove = date => {setSteps(prevSteps => prevSteps.filter(s => s.date !== date))}
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AddForm onAdd={handleAdd}/>
+      <StepsList className="steps-list" steps={steps} handleRemove={handleRemove}/>
     </div>
   );
 }
